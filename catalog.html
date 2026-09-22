@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madiba's Thrift Closet | Catalog</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0f0a07;
+            --card-tan: #c2884c;
+            --card-border: #4d2309;
+            --gold-accent: #e5a43b;
+            --text-light: #f5eedc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(rgba(229, 164, 59, 0.05) 1px, transparent 0),
+                radial-gradient(rgba(229, 164, 59, 0.05) 1px, var(--bg-dark) 1px);
+            background-size: 30px 30px;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            padding-bottom: 60px;
+        }
+
+        .tribal-bar {
+            height: 18px;
+            background: repeating-linear-gradient(
+                45deg,
+                #da7b27,
+                #da7b27 12px,
+                #111 12px,
+                #111 24px,
+                #e5a43b 24px,
+                #e5a43b 36px
+            );
+            border-bottom: 2px solid #000;
+        }
+
+        header {
+            background-color: #0b0705;
+            text-align: center;
+            border-bottom: 2px solid var(--gold-accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .logo-wrapper {
+            text-align: center;
+            margin: 5px 0;
+            flex-grow: 1;
+        }
+
+        .logo-placeholder {
+            max-width: 420px;
+            max-height: 180px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.3rem;
+            color: var(--gold-accent);
+        }
+
+        .icon-btn {
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: #e63946;
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-weight: bold;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid rgba(229, 164, 59, 0.2);
+            padding: 12px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
+
+        nav a.active, nav a:hover {
+            color: var(--gold-accent);
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            display: none;
+            background: rgba(11, 7, 5, 0.95);
+            padding: 15px;
+            border-bottom: 2px solid var(--gold-accent);
+            text-align: center;
+        }
+
+        .search-overlay input {
+            width: 80%;
+            max-width: 500px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--gold-accent);
+            background: #1a120b;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        /* Catalog Layout */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--gold-accent);
+            text-align: center;
+            margin: 40px 0 20px;
+            letter-spacing: 2px;
+        }
+
+        .page-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 30px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: var(--card-tan);
+            border: 4px solid var(--card-border);
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card::before {
+            content: '';
+            display: block;
+            height: 10px;
+            background: repeating-linear-gradient(90deg, #5a2a0a, #5a2a0a 10px, #e5a43b 10px, #e5a43b 20px);
+            margin-bottom: 10px;
+            border-radius: 2px;
+        }
+
+        /* FIX: Removed white background and enabled proper image cropping */
+        .product-image-box {
+            background: #140d09;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .product-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            background: #b57a3e;
+            margin-top: 10px;
+            padding: 10px 8px;
+            border-radius: 4px;
+            border: 1px solid #7a4214;
+        }
+
+        .product-title {
+            color: #1a0d05;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .product-price {
+            color: #000;
+            font-weight: 900;
+            font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 8px;
+        }
+
+        .card-add-btn {
+            background-color: #4d2309;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .card-add-btn:hover {
+            background-color: #2b1304;
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background: #140d09;
+            border: 3px solid var(--gold-accent);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .widget-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-accent);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .insta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1d72b8;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        /* FIX: Render actual images on Instagram grid */
+        .insta-grid img {
+            width: 100%;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid var(--gold-accent);
+        }
+
+        .insta-handle {
+            display: block;
+            margin-top: 12px;
+            background: #005691;
+            color: white;
+            padding: 6px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+
+        /* Shopping Cart Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: #140d09;
+            border-left: 3px solid var(--gold-accent);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.8);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gold-accent);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cart-header h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-accent);
+        }
+
+        .close-cart {
+            cursor: pointer;
+            font-size: 1.4rem;
+            color: #ccc;
+        }
+
+        .cart-items-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #22160f;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #4a2b15;
+        }
+
+        .cart-item-info h5 {
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-info span {
+            color: var(--gold-accent);
+            font-weight: bold;
+        }
+
+        .remove-item-btn {
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--gold-accent);
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Floating Widgets */
+        .footer-widget-area {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .whatsapp-banner {
+            background: rgba(18, 18, 18, 0.95);
+            border: 2px solid var(--gold-accent);
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+        }
+
+        .whatsapp-banner p {
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wa-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e5a43b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .add-to-cart-sticky {
+            background: #222;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .page-container { grid-template-columns: 1fr; }
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 550px) {
+            .catalog-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tribal-bar"></div>
+
+    <header>
+        <div class="header-top">
+            <div style="width: 50px;"></div>
+            <div class="logo-wrapper">
+                <a href="index.html"><img src="logo.jpg" alt="Madiba's Thrift Closet Logo" class="logo-placeholder"></a>
+            </div>
+            <div class="header-icons">
+                <div class="icon-btn" onclick="toggleSearch()"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="icon-btn cart-icon" onclick="toggleCartDrawer()">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <input type="text" id="searchInput" placeholder="Search catalog for pieces..." onkeyup="filterProducts()">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html" class="active">Catalog</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section-title">OUR CATALOG</div>
+
+    <div class="page-container">
+        <!-- Product Grid -->
+        <main class="catalog-grid" id="productGrid">
+            <script>
+                const productGrid = document.getElementById('productGrid');
+                for(let i = 1; i <= 19; i++) {
+                    const price = 150; 
+                    const name = `Premium Piece M${i}`;
+                    const img = `m${i}.jpg`;
+                    
+                    productGrid.innerHTML += `
+                        <div class="product-card" data-name="${name}">
+                            <div class="product-image-box" onclick="quickAdd('${name}', ${price})">
+                                <img src="${img}" alt="${name}" onerror="this.src='logo.jpg'">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-title">${name}</div>
+                                <div class="product-price">K${price}</div>
+                                <button class="card-add-btn" onclick="quickAdd('${name}', ${price})">Add to Cart</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            </script>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar-container">
+            <div class="sidebar-widget">
+                <div class="widget-title">Instagram</div>
+                <a href="https://instagram.com/madibascloset" target="_blank" class="insta-btn"><i class="fa-brands fa-instagram"></i> Follow</a>
+                
+                <!-- FIX: Real catalog images showing on Instagram grid -->
+                <div class="insta-grid">
+                    <img src="m1.jpg" alt="Insta Post 1" onerror="this.src='logo.jpg'">
+                    <img src="m2.jpg" alt="Insta Post 2" onerror="this.src='logo.jpg'">
+                    <img src="m3.jpg" alt="Insta Post 3" onerror="this.src='logo.jpg'">
+                    <img src="m4.jpg" alt="Insta Post 4" onerror="this.src='logo.jpg'">
+                    <img src="m5.jpg" alt="Insta Post 5" onerror="this.src='logo.jpg'">
+                    <img src="m6.jpg" alt="Insta Post 6" onerror="this.src='logo.jpg'">
+                </div>
+                
+                <a href="https://instagram.com/madibascloset" target="_blank" class="insta-handle">@madibascloset</a>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Shopping Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCartDrawer()">&times;</span>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <p style="text-align:center; color:#888; margin-top: 20px;">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price">
+                <span>Total:</span>
+                <span id="cartTotal">K0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Sticky Footer Widgets -->
+    <div class="footer-widget-area">
+        <div class="whatsapp-banner">
+            <p>Contact & Direct Order<br>via WhatsApp</p>
+            <a href="https://wa.me/260000000000" target="_blank" class="wa-link">
+                <i class="fa-brands fa-whatsapp" style="color: #25d366; font-size: 1.2rem;"></i> @madibascloset
+            </a>
+        </div>
+        <button class="add-to-cart-sticky" onclick="toggleCartDrawer()">
+            <i class="fa-solid fa-basket-shopping"></i> View Cart (<span id="stickyCartBadge">0</span>)
+        </button>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function toggleSearch() {
+            const overlay = document.getElementById('searchOverlay');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+            if (overlay.style.display === 'block') document.getElementById('searchInput').focus();
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                card.style.display = name.includes(query) ? 'flex' : 'none';
+            });
+        }
+
+        function toggleCartDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+        }
+
+        function quickAdd(name, price) {
+            const existingIndex = cart.findIndex(item => item.name === name);
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({ name: name, price: price, qty: 1 });
+            }
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cartItemsList');
+            const totalBadge = document.querySelector('.cart-badge');
+            const stickyBadge = document.getElementById('stickyCartBadge');
+            const totalEl = document.getElementById('cartTotal');
+
+            let grandTotal = 0;
+            let totalQty = 0;
+            list.innerHTML = '';
+
+            if (cart.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#888; margin-top: 20px;">Your cart is empty.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    grandTotal += item.price * item.qty;
+                    totalQty += item.qty;
+
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'cart-item';
+                    itemEl.innerHTML = `
+                        <div class="cart-item-info">
+                            <h5>${item.name}</h5>
+                            <span>K${item.price} x ${item.qty}</span>
+                        </div>
+                        <i class="fa-solid fa-trash remove-item-btn" onclick="removeItem(${index})"></i>
+                    `;
+                    list.appendChild(itemEl);
+                });
+            }
+
+            totalBadge.innerText = totalQty;
+            stickyBadge.innerText = totalQty;
+            totalEl.innerText = 'K' + grandTotal;
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add items before checking out!');
+                return;
+            }
+
+            let message = "Hi Madiba's Closet! I would like to order:\n\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                message += `- ${item.name} (x${item.qty}) : K${itemTotal}\n`;
+            });
+
+            message += `\nTotal Amount: K${total}\n\nPlease let me know how to proceed with payment and delivery!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/260000000000?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>

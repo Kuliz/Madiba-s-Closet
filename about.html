@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madiba's Thrift Closet | About Us</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0f0a07;
+            --gold-accent: #e5a43b;
+            --text-light: #f5eedc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(rgba(229, 164, 59, 0.05) 1px, transparent 0),
+                radial-gradient(rgba(229, 164, 59, 0.05) 1px, var(--bg-dark) 1px);
+            background-size: 30px 30px;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            padding-bottom: 60px;
+        }
+
+        .tribal-bar {
+            height: 18px;
+            background: repeating-linear-gradient(
+                45deg,
+                #da7b27,
+                #da7b27 12px,
+                #111 12px,
+                #111 24px,
+                #e5a43b 24px,
+                #e5a43b 36px
+            );
+            border-bottom: 2px solid #000;
+        }
+
+        header {
+            background-color: #0b0705;
+            text-align: center;
+            border-bottom: 2px solid var(--gold-accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .logo-wrapper {
+            text-align: center;
+            margin: 5px 0;
+            flex-grow: 1;
+        }
+
+        .logo-placeholder {
+            max-width: 420px;
+            max-height: 180px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.3rem;
+            color: var(--gold-accent);
+        }
+
+        .header-icons a {
+            color: var(--gold-accent);
+            text-decoration: none;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid rgba(229, 164, 59, 0.2);
+            padding: 12px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
+
+        nav a.active, nav a:hover {
+            color: var(--gold-accent);
+        }
+
+        /* About Card */
+        .about-container {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 40px 30px;
+            background: rgba(20, 13, 9, 0.9);
+            border: 3px solid var(--gold-accent);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+        }
+
+        .about-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--gold-accent);
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .about-container p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--gold-accent);
+            color: #000;
+            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #d4912a;
+        }
+
+        .footer-widget-area {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+        }
+
+        .whatsapp-banner {
+            background: rgba(18, 18, 18, 0.95);
+            border: 2px solid var(--gold-accent);
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+        }
+
+        .whatsapp-banner p {
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wa-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e5a43b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tribal-bar"></div>
+
+    <header>
+        <div class="header-top">
+            <div style="width: 50px;"></div>
+            <div class="logo-wrapper">
+                <a href="index.html"><img src="logo.jpg" alt="Madiba's Thrift Closet Logo" class="logo-placeholder"></a>
+            </div>
+            <div class="header-icons">
+                <a href="catalog.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="catalog.html"><i class="fa-solid fa-basket-shopping"></i></a>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalog.html">Catalog</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="about-container">
+        <div class="about-title">ABOUT MADIBA'S CLOSET</div>
+        <p>Welcome to <strong>Madiba's Thrift Closet</strong> — your curated destination for streetwear, vintage classics, and premium fashion reborn.</p>
+        <p>We believe style shouldn't come at an extreme cost. Our collection features hand-selected thrift pieces built for durability, uniqueness, and comfort.</p>
+        <p>Browse our catalog and place your orders directly with us via WhatsApp for quick response and local delivery!</p>
+        
+        <a href="catalog.html" class="cta-btn">View Catalog <i class="fa-solid fa-store" style="margin-left: 6px;"></i></a>
+    </div>
+
+    <div class="footer-widget-area">
+        <div class="whatsapp-banner">
+            <p>Contact & Direct Order<br>via WhatsApp</p>
+            <a href="https://wa.me/260000000000" target="_blank" class="wa-link">
+                <i class="fa-brands fa-whatsapp" style="color: #25d366; font-size: 1.2rem;"></i> @madibascloset
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
