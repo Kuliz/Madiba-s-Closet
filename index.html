@@ -34,7 +34,7 @@
             background-size: 30px 30px;
             color: var(--text-light);
             font-family: 'Montserrat', sans-serif;
-            padding-bottom: 60px;
+            padding-bottom: 80px;
         }
 
         .tribal-bar {
@@ -95,6 +95,11 @@
         .header-icons a {
             color: var(--gold-accent);
             text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .header-icons a:hover {
+            color: #ffffff;
         }
 
         nav {
@@ -226,7 +231,6 @@
             justify-content: space-between;
         }
 
-        /* FIX: Removed white background and set object-fit cover */
         .product-image-box {
             background: #140d09;
             border-radius: 4px;
@@ -297,6 +301,10 @@
             font-weight: bold;
         }
 
+        .wa-link:hover {
+            color: #ffffff;
+        }
+
         @media (max-width: 800px) {
             .featured-grid { grid-template-columns: 1fr; }
             .hero-banner h1 { font-size: 2.5rem; }
@@ -314,8 +322,8 @@
                 <a href="index.html"><img src="logo.jpg" alt="Madiba's Thrift Closet Logo" class="logo-placeholder"></a>
             </div>
             <div class="header-icons">
-                <a href="catalog.html"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="catalog.html"><i class="fa-solid fa-basket-shopping"></i></a>
+                <a href="catalog.html" title="Search Catalog"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="catalog.html" title="View Cart"><i class="fa-solid fa-basket-shopping"></i></a>
             </div>
         </div>
 
@@ -348,7 +356,7 @@
         <div class="featured-grid">
             <div class="product-card">
                 <div class="product-image-box">
-                    <img src="m1.jpg" alt="Featured Piece 1" onerror="this.src='logo.jpg'">
+                    <img src="m1.jpg" alt="Featured Piece M1" onerror="this.src='logo.jpg'">
                 </div>
                 <div class="product-info">
                     <div class="product-title">Premium Piece M1</div>
@@ -357,7 +365,7 @@
             </div>
             <div class="product-card">
                 <div class="product-image-box">
-                    <img src="m2.jpg" alt="Featured Piece 2" onerror="this.src='logo.jpg'">
+                    <img src="m2.jpg" alt="Featured Piece M2" onerror="this.src='logo.jpg'">
                 </div>
                 <div class="product-info">
                     <div class="product-title">Premium Piece M2</div>
@@ -366,7 +374,7 @@
             </div>
             <div class="product-card">
                 <div class="product-image-box">
-                    <img src="m3.jpg" alt="Featured Piece 3" onerror="this.src='logo.jpg'">
+                    <img src="m3.jpg" alt="Featured Piece M3" onerror="this.src='logo.jpg'">
                 </div>
                 <div class="product-info">
                     <div class="product-title">Premium Piece M3</div>
@@ -380,7 +388,7 @@
         <div class="whatsapp-banner">
             <p>Contact & Direct Order<br>via WhatsApp</p>
             <a href="https://wa.me/260973835473" target="_blank" class="wa-link">
-                <i class="fa-brands fa-whatsapp" style="color: #25d366; font-size: 1.2rem;"></i> @madibascloset
+                <i class="fa-brands fa-whatsapp" style="color: #25d366; font-size: 1.2rem;"></i> +260 973835473
             </a>
         </div>
     </div>
